@@ -1,15 +1,34 @@
-## Put comments here that give an overall description of what your
-## functions do
+## These functions provide a solution to the homework assignment.
+## 
 
-## Write a short comment describing this function
+## A function that provides the first half of a solution to the homework assignment
 
 makeCacheMatrix <- function(x = matrix()) {
+  inv <- NULL
+  set <- function(y) {
+    x <<- y
+    inv <<- NULL
+  }
+  get <- function() x
+  setInverse <- function(inv_X) inv <<- inv_X
+  getInverse <- function() inv
 
+  matrix(c(set, get, setInverse, getInverse),2,2) ## creates a "matrix" object
+  
 }
 
 
-## Write a short comment describing this function
+## Return a matrix that is the inverse of the ma
 
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
-}
+  inv <- x[2,2][[1]]() ##takes in the "matrix" object 
+  if(!is.null(inv)) {
+    message("getting cached data")
+    return(inv)
+  }
+  data <- x[2,1][[1]]()
+  inv <- solve(data)
+  x[1,2][[1]](inv)
+  inv
+  
+  }
